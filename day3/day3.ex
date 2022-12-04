@@ -1,12 +1,12 @@
 defmodule Day3 do
+  @letters "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
   defp get_item_priorities(rucksack) do
     {first_item, second_item} = String.split_at(rucksack, div(String.length(rucksack), 2))
     first_item_set = MapSet.new(String.to_charlist(first_item))
     second_item_set = MapSet.new(String.to_charlist(second_item))
     common_item = List.to_string(MapSet.to_list(MapSet.intersection(first_item_set, second_item_set)))
 
-    letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    [characters|_] = String.split(letters, common_item)
+    [characters|_] = String.split(@letters, common_item)
     String.length(characters) + 1
   end
 
@@ -24,8 +24,7 @@ defmodule Day3 do
     second_set = MapSet.new(String.to_charlist(second))
     third_set = MapSet.new(String.to_charlist(third))
     common_item = List.to_string(MapSet.to_list(MapSet.intersection(MapSet.intersection(first_set, second_set), third_set)))
-    letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    [characters|_] = String.split(letters, common_item)
+    [characters|_] = String.split(@letters, common_item)
     value = String.length(characters) + 1
 
     if rest == [] do
